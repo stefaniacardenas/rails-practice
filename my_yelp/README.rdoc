@@ -5,7 +5,7 @@ Just getting started with Ruby on Rails.
 I will try to create a website similar to Yelp!.
 
 Technologies used
------------
+-----------------
 For the completion of this project I used the following technologies:
 
 * Ruby on Rails

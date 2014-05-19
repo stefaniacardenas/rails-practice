@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 group :development, :test do
 	gem 'rspec'
-	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'rspec-rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
