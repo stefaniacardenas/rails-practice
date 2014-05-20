@@ -6,6 +6,7 @@ require 'spec_helper.rb'
 		it 'should show a message' do 
 			visit '/restaurants'
 			expect(page).to have_content('No restaurants added yet!')
+			expect(page).to have_link('Create a restaurant')
 		end
 	end
 
@@ -32,7 +33,7 @@ require 'spec_helper.rb'
 			fill_in 'Cuisine', with: 'Mexican'
 			click_button 'Create Restaurant'
 
-			expect(page).to have_content 'errors'
+			expect(page).to have_content 'error'
 			end
 		end
 
