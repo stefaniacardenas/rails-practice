@@ -1,1 +1,7 @@
-No restaurants added yet!
+<% if Restaurant.all.any? %>
+	<% Restaurant.all.each do |restaurant| %>
+		<%= restaurant.name %>
+	<%end%>
+<%else%>
+	No restaurants added yet!
+<%end%>

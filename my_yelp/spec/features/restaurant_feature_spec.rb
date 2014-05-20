@@ -17,7 +17,7 @@ require 'spec_helper.rb'
 			fill_in 'Address', with: '72, Palatine Rd, London'
 			click_button 'Create Restaurant'
 
-			expect(current_path).to eq '/restaurants/new'
+			expect(current_path).to eq '/restaurants'
 			expect(page).to have_content 'Wahaca'
 		end
 
