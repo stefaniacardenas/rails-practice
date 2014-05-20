@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
 			redirect_to '/restaurants'
 		else
 			render 'new'
-		end
+		end  
 
 	end
 
@@ -25,9 +25,13 @@ class RestaurantsController < ApplicationController
  
 	def update
 		@restaurant = Restaurant.find(params[:id])
-		@restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
-		redirect_to '/restaurants'
+
+		if @restaurant.update(params[:restaurant].permit(:name, :address, :cuisine))
+			 redirect_to '/restaurants'
+		else
+			render 'edit'
 	end
+end
 
 	def destroy
 		@restaurant = Restaurant.find(params[:id])

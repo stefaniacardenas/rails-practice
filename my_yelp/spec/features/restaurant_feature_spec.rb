@@ -40,19 +40,39 @@ require 'spec_helper.rb'
 	end
 
 	describe 'editing a restaurant' do
-		before { Restaurant.create(name: 'Thai Veg', address: '1, Essex Rd - London', cuisine: 'Thai')}
+		context 'with valid data' do
 
-		it 'saves the change to the restaurant' do
-			visit '/restaurants'
-			click_link 'Edit Thai Veg'
+			before { Restaurant.create(name: 'Thai Veg', address: '1, Essex Rd - London', cuisine: 'Thai')}
 
-			fill_in 'Name', with: 'Thai Vegetarian Restaurant'
-			click_button 'Update Restaurant'
+			it 'saves the change to the restaurant' do
+				visit '/restaurants'
+				click_link 'Edit Thai Veg'
 
-			expect(current_path).to eq '/restaurants'
-			expect(page).to have_content('Thai Vegetarian Restaurant')
+				fill_in 'Name', with: 'Thai Vegetarian Restaurant'
+				click_button 'Update Restaurant'
+
+				expect(current_path).to eq '/restaurants'
+				expect(page).to have_content('Thai Vegetarian Restaurant')
+			end
+		end
+
+		context 'with invalid data' do
+
+			before { Restaurant.create(name: 'Thai Veg', address: '1, Essex Rd - London', cuisine: 'Thai')}
+
+			it 'display an error' do
+				visit '/restaurants'
+				click_link 'Edit Thai Veg'
+
+				fill_in 'Name', with: 'thai veg'
+				click_button 'Update Restaurant'
+
+				expect(page).to have_content('error')
+			end
 		end
 	end
+
+
 
 	describe 'deleting a restaurant' do 
 		before { Restaurant.create(name: 'Whatever', address: 'Somewhere in London', cuisine: 'Stuff') }
