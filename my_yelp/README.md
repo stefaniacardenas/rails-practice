@@ -1,4 +1,4 @@
-#My_Yelp
+#My Yelp
 ==========
 
 Just getting started with Ruby on Rails.
