@@ -3,4 +3,15 @@ class Restaurant < ActiveRecord::Base
 	validates :address, presence: true, length: {minimum: 3} 
 	validates :cuisine, presence: true
 	has_many :reviews
+
+	def average_rating
+		if reviews.any?
+			reviews.inject(0) { | total, review |
+				total + review.rating 
+				} / reviews.count.to_f
+		else
+			'N/A'
+		end
+	end
+
 end

@@ -27,3 +27,44 @@ describe Restaurant do
 	end
 
 end
+
+describe '#average_rating' do
+
+let(:restaurant) { Restaurant.create(name: 'Kabir', address: 'Rome', cuisine: 'Indian' )}
+	
+	it 'initially returns N/A' do 
+		expect(restaurant.average_rating).to eq 'N/A'
+	end
+
+	context '1 review' do
+		before { restaurant.reviews.create(rating: 3) }
+
+		it 'returns the score of that review' do 
+			expect(restaurant.average_rating).to eq 3
+		end
+	end
+
+	context '> 1 reviews' do 
+		before do 
+			restaurant.reviews.create(rating: 3)
+			restaurant.reviews.create(rating: 5)
+		end
+
+		it 'returns the score of that review' do
+			expect(restaurant.average_rating).to eq 4
+		end
+	end
+
+	context 'non-integer average' do 
+		before do
+			restaurant.reviews.create(rating: 2)
+			restaurant.reviews.create(rating: 5)
+		end
+
+			it 'does not round up or down' do
+			expect(restaurant.average_rating).to eq 3.5
+		end
+	end
+
+
+end
