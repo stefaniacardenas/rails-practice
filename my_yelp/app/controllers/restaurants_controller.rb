@@ -31,7 +31,7 @@ class RestaurantsController < ApplicationController
 		else
 			render 'edit'
 	end
-end
+end 
 
 	def destroy
 		@restaurant = Restaurant.find(params[:id])
