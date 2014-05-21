@@ -39,6 +39,14 @@ describe 'writing reviews' do
 		  fill_in 'Comments', with: comments
 		  select rating.to_s, from: 'Rating'
 		  click_button 'Leave Review'
- 		end
+ 	end
+
+	it 'displays stars for average rating' do
+ 		leave_review(4, 'Very good')
+ 		leave_review(2, 'Nothing special!')
+
+ 		visit '/restaurants'
+		expect(page).to have_content '★★★☆☆'
+ 	end
  		
 end
