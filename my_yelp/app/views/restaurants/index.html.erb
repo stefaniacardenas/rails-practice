@@ -8,6 +8,8 @@
 			<%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
 			<h4> <%= pluralize restaurant.reviews.count, 'review' %></h4>
 
+			<h5>Average rating: <%= restaurant.average_rating %> </h5>
+
 			<ul>
 				<% restaurant.reviews.each do |review| %>
 				<li>
