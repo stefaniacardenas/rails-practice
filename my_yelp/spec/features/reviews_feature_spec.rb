@@ -1,18 +1,34 @@
  require 'spec_helper'
 
- describe 'writing reviews' do
+describe 'writing reviews' do
 
  	before { Restaurant.create(name: 'Wahaca', address: 'Somewhere', cuisine: 'Mexican')}
   
+  context 'with valid data' do
 	  it 'adds the review to the restaurant' do
-	  visit '/restaurants'
-	  click_link 'Review Wahaca'
+		  visit '/restaurants'
+		  click_link 'Review Wahaca'
 
-	  fill_in 'Comments', with: 'Very good'
-	  select '4', from: 'Rating'
-	  click_button 'Leave Review'
+		  fill_in 'Comments', with: 'Very good'
+		  select '4', from: 'Rating'
+		  click_button 'Leave Review'
 
-	  expect(current_path).to eq '/restaurants'
-	  expect(page).to have_content('Very good') 
+		  expect(current_path).to eq '/restaurants'
+		  expect(page).to have_content('Very good') 
+ 		end
  	end
+
+ 	context 'with invalid data' do
+	  it 'displays an error' do
+		  visit '/restaurants'
+		  click_link 'Review Wahaca'
+
+		  fill_in 'Comments', with: 'V'
+		  select '7', from: 'Rating'
+		  click_button 'Leave Review'
+
+		  expect(page).to have_content('error') 
+ 		end
+ end
+
 end
