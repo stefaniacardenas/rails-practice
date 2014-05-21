@@ -6,9 +6,11 @@ class Restaurant < ActiveRecord::Base
 
 	def average_rating
 		if reviews.any?
-			reviews.inject(0) { | total, review |
-				total + review.rating 
-				} / reviews.count.to_f
+			# reviews.inject(0) { | total, review |
+			# 	total + review.rating 
+			# 	} / reviews.count.to_f
+			reviews.average(:rating)
+			# this is a  built-in method in rails
 		else
 			'N/A'
 		end
