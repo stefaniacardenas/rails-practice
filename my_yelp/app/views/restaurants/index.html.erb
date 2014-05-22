@@ -1,3 +1,9 @@
+<template id="review_template">
+	<li>
+		<strong>{{ rating }}</strong> - {{ comments }}
+	</li>
+</template>
+
 <% if @restaurants.any? %>
 
 		<% @restaurants.each do |restaurant| %>

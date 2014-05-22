@@ -5,7 +5,7 @@ describe 'writing reviews' do
  	before { Restaurant.create(name: 'Wahaca', address: 'Somewhere', cuisine: 'Mexican')}
   
   context 'with valid data' do
-	  it 'adds the review to the restaurant' do
+	  it 'adds the review to the restaurant', js: true do
 		  leave_review(4, 'Very good')
 		  expect(current_path).to eq '/restaurants'
 		  expect(page).to have_content('Very good') 

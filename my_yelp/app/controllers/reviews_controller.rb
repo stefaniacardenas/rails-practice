@@ -7,13 +7,12 @@ class ReviewsController < ApplicationController
 
   def create
   	@restaurant = Restaurant.find(params[:restaurant_id])
-  	@review = @restaurant.reviews.new(params[:review].permit(:comments, :rating))
-  	if @review.save
-  		redirect_to '/restaurants'
-  	else
-  		flash[:notice] = "Invalid review"
-  		redirect_to '/restaurants'
-  	end
+  	@@restaurant.reviews.create!(params[:review].permit(:comments, :rating))
+
+      respond_to do |format|
+        format.html{ redirect_to '/restaurants' }
+        format.json{ render json: review }
+      end
   end
 
 end
