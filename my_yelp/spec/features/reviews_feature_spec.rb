@@ -12,18 +12,6 @@ describe 'writing reviews' do
  		end
  	end
 
- # 	context 'with invalid data' do
-	#   it 'displays an error' do
-	# 	  visit '/restaurants'
-	# 	  click_link 'Review Wahaca'
-
-	# 	  fill_in 'Comments', with: 'V'
-	# 	  click_button 'Leave Review'
-
-	# 	  expect(page).to have_content('Invalid review') 
- # 		end
- # end
-
  	it 'calculates the average of reviews' do
  		leave_review(4, 'Very good')
  		leave_review(2, 'Nothing special!')
@@ -35,7 +23,6 @@ describe 'writing reviews' do
 
  	def leave_review(rating, comments)
  		visit '/restaurants'
- 		click_link 'Review Wahaca'
 		  fill_in 'Comments', with: comments
 		  select rating.to_s, from: 'Rating'
 		  click_button 'Leave Review'
